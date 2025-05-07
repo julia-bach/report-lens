@@ -8,7 +8,7 @@ export default function Test({ hasError }: {hasError?: boolean}) {
   const t = useTranslations()
 
   const fetchData = async () => {
-    const res = await apiClient.get("/api/test");
+    const res = await apiClient.get("/api/reports");
     await delay(3000)
     return res?.data
   };
@@ -17,7 +17,7 @@ export default function Test({ hasError }: {hasError?: boolean}) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  useSWR(hasError ? null : "/api/test", fetchData, {
+  useSWR(hasError ? null : "/api/reports", fetchData, {
     suspense: true,
     onSuccess: (data) => {
       console.log("Data fetched successfully", data);

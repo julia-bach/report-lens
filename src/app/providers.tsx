@@ -12,7 +12,7 @@ type Props = {
 
 export function Providers({ children, locale, messages }: Props) {
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider locale={locale} messages={messages} timeZone={"America/Sao_Paulo"}>
       <HeroUIProvider>
         {children}
       </HeroUIProvider>
