@@ -1,8 +1,8 @@
 import type {Config} from "tailwindcss";
 import {heroui} from "@heroui/react";
 
-const primaryColor = process.env.NEXT_PUBLIC_PRIMARY_COLOR || "hsl(270, 84%, 47%)"; // TODO: Change this default color to another one
-const secondaryColor = process.env.NEXT_PUBLIC_SECONDARY_COLOR || "hsl(49, 84%, 47%)"; // TODO: Change this default color to another one
+const primaryColor = process.env.NEXT_PUBLIC_PRIMARY_COLOR || "hsl(327, 54%, 50%)"; // TODO: Change this default color to another one
+const secondaryColor = process.env.NEXT_PUBLIC_SECONDARY_COLOR || "hsl(85, 45%, 50%)"; // TODO: Change this default color to another one
 
 function adjustHslLightness(hsl: string, amount: number): string {
   const match = hsl.match(/hsla?\((\d+)(?:deg)?,\s*(\d+)%?,\s*(\d+)%?(?:,\s*([\d.]+))?\)/i);
@@ -43,6 +43,26 @@ export const themeColors = {
     400: "hsl(0, 0%, 50%)",
     500: "hsl(0, 0%, 30%)",
     600: "hsl(0, 0%, 15%)",
+  },
+  defaultAppColors: {
+    primary: {
+      50: "hsl(327, 54%, 100%)",
+      100: "hsl(327, 54%, 90%)",
+      200: "hsl(327, 54%, 75%)",
+      300: "hsl(327, 54%, 60%)",
+      400: "hsl(327, 54%, 50%)",
+      500: "hsl(327, 54%, 40%)",
+      600: "hsl(327, 54%, 25%)",
+    },
+    secondary: {
+      50: "hsl(85, 45%, 100%)",
+      100: "hsl(85, 45%, 90%)",
+      200: "hsl(85, 45%, 75%)",
+      300: "hsl(85, 45%, 60%)",
+      400: "hsl(85, 45%, 50%)",
+      500: "hsl(85, 45%, 40%)",
+      600: "hsl(85, 45%, 25%)",
+    }
   }
 };
 
