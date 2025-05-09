@@ -21,7 +21,10 @@
     "react-dom": "19.1.0",
     "swr": "2.3.3",
     "tailwindcss-animate": "1.0.7",
-    "zustand": "5.0.4"
+    "zustand": "5.0.4",
+    "ag-charts-community": "11.2.1",
+    "ag-grid-react": "33.2.1",
+    "ag-grid-community": "33.2.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "3",

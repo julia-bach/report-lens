@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
+  baseDirectory: __dirname
 });
 
 const eslintConfig = [
@@ -26,6 +26,7 @@ const eslintConfig = [
       eqeqeq: ["error", "always"],
       curly: ["error", "all"],
       indent: ["error", 2, { "SwitchCase": 1 }],
+      quotes: ["error", "double"],
       "no-console": ["warn", { "allow": ["warn", "error"] }],
       "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
       "no-var": "error",
@@ -36,9 +37,11 @@ const eslintConfig = [
       "prefer-arrow-callback": "error",
       "object-curly-spacing": ["error", "always"],
       "react-hooks/exhaustive-deps": "off",
+      "comma-dangle": ["error", "never"],
 
       // typescript
-      "@typescript-eslint/no-explicit-any": "off"
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unused-vars": "off"
     }
   }
 ];

@@ -7,6 +7,7 @@ import {
   RichTranslationValues,
   TranslationValues
 } from "use-intl"
+import React from "react";
 
 export type Translations = {
   <TargetKey extends MessageKeys<NestedValueOf<any, "!">, NestedKeyOf<NestedValueOf<any, "!">>>>(key: TargetKey, values?: TranslationValues, formats?: Formats): string;
@@ -14,4 +15,19 @@ export type Translations = {
   markup<TargetKey extends MessageKeys<NestedValueOf<any, "!">, NestedKeyOf<NestedValueOf<any, "!">>>>(key: TargetKey, values?: MarkupTranslationValues, formats?: Formats): string;
   raw<TargetKey extends MessageKeys<NestedValueOf<any, "!">, NestedKeyOf<NestedValueOf<any, "!">>>>(key: TargetKey): any;
   has<TargetKey extends MessageKeys<NestedValueOf<any, "!">, NestedKeyOf<NestedValueOf<any, "!">>>>(key: TargetKey): boolean
+}
+
+export type ReportStatsDTO = {
+  id?: number;
+  duration: number;
+  expected: number;
+  flaky: number;
+  skipped: number;
+  startTime: string;
+  unexpected: number;
+}
+
+export type ReportDTO = {
+  _id: number;
+  stats: ReportStatsDTO;
 }
