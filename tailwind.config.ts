@@ -1,8 +1,8 @@
 import type {Config} from "tailwindcss";
 import {heroui} from "@heroui/react";
 
-const primaryColor = process.env.NEXT_PUBLIC_PRIMARY_COLOR || "hsl(327, 54%, 50%)"; // TODO: Change this default color to another one
-const secondaryColor = process.env.NEXT_PUBLIC_SECONDARY_COLOR || "hsl(85, 45%, 50%)"; // TODO: Change this default color to another one
+const primaryColor = process.env.NEXT_PUBLIC_PRIMARY_COLOR || "hsl(327, 54%, 50%)";
+const secondaryColor = process.env.NEXT_PUBLIC_SECONDARY_COLOR || "hsl(85, 45%, 50%)";
 
 function adjustHslLightness(hsl: string, amount: number): string {
   const match = hsl.match(/hsla?\((\d+)(?:deg)?,\s*(\d+)%?,\s*(\d+)%?(?:,\s*([\d.]+))?\)/i);
