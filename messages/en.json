@@ -1,3 +1,16 @@
 {
-  "hello": "Hello, World!"
+  "reportLens": "ReportLens",
+  "loginPage": {
+    "subtitle": "Make sense of every test run",
+    "description": "Turn your automated testing into a source of truth — not just output. Built for QA teams and developers who need real visibility into software quality.",
+    "devMessage": "Open source and crafted with love • Support the project on",
+    "github": "GitHub",
+    "hello": "Welcome to ReportLens!",
+    "loginMessage": "Please enter your credentials to continue",
+    "emptyField": "This field cannot be empty.",
+    "username": "Username",
+    "password": "Password",
+    "rememberUser": "Keep me signed in",
+    "signIn": "Sign in"
+  }
 }
