@@ -13,11 +13,3 @@ export const getMongoDbName = (): string => {
 export const getNodeEnv = (): string => {
   return process.env.NODE_ENV ?? "";
 }
-
-export const getUsername = (): string => {
-  return process.env.USERNAME ?? "none";
-}
-
-export const getPassword = (): string => {
-  return process.env.PASSWORD ?? "none";
-}

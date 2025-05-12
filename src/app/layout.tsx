@@ -4,6 +4,7 @@ import "./globals.css";
 import { getLocale, getMessages } from "next-intl/server";
 import React from "react";
 import { Providers } from "@/app/providers";
+import { ToastContainer } from "@/components/wrappers/toast/toast-container";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers locale={locale} messages={messages}>
+          <ToastContainer/>
           {children}
         </Providers>
       </body>
