@@ -38,6 +38,7 @@ const eslintConfig = [
       "object-curly-spacing": ["error", "always"],
       "react-hooks/exhaustive-deps": "off",
       "comma-dangle": ["error", "never"],
+      "semi": ["error", "always"],
 
       // typescript
       "@typescript-eslint/no-explicit-any": "off",

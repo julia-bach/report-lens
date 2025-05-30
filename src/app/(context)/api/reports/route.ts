@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   const client = await clientPromise;
-  const db = client.db(getMongoDbName())
+  const db = client.db(getMongoDbName());
 
   const data = await db.collection("default").find({}, { projection: { stats: 1 } }).toArray();
 

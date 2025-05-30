@@ -22,21 +22,34 @@ export default function LoginPage() {
 
   const [isUsernameEmpty, setIsUsernameEmpty] = useState(false);
   const [isPasswordEmpty, setIsPasswordEmpty] = useState(false);
+  const [rememberUser, setRememberUser] = useState(true);
 
   useEffect(() => {
     Promise.all([getUsername(), getPassword()]).then(([user, pass]) => {
       envUsername.current = user;
       envPassword.current = pass;
-    })
+    });
   }, []);
 
-  const handleCredentials = () => {
-    if(envUsername.current !== username || envPassword.current !== password) {
-      toast.error("Invalid username or password");
-      return
+  const handleCredentials = async () => {
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password, rememberUser })
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        router.push("/");
+      } else {
+        toast.error("Invalid username or password");
+      }
+    } catch (err) {
+      toast.error("Server error during login");
     }
-    router.push("/");
-  }
+  };
 
   const goToHome = () => {
     const isUsernameValid = username.trim() !== "";
@@ -46,9 +59,9 @@ export default function LoginPage() {
     setIsPasswordEmpty(!isPasswordValid);
 
     if (isUsernameValid && isPasswordValid) {
-      handleCredentials();
+      handleCredentials().then();
     }
-  }
+  };
 
   return (
     <div className={"flex h-full"}>
@@ -124,6 +137,8 @@ export default function LoginPage() {
                 label: "text-gray-400"
               }}
               color="default"
+              isSelected={rememberUser}
+              onValueChange={setRememberUser}
             >
               {t("loginPage.rememberUser")}
             </Checkbox>
