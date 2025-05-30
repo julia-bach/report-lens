@@ -12,5 +12,10 @@
     "password": "Password",
     "rememberUser": "Keep me signed in",
     "signIn": "Sign in"
+  },
+  "navbar": {
+    "home": "Home",
+    "timeline": "Timeline",
+    "dashboards": "Dashboards"
   }
 }
