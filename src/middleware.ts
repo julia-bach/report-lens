@@ -15,6 +15,7 @@ export const middleware = async (request: NextRequest) => {
     return NextResponse.next();
   }
 
+  // TODO: validar expired date do cookie/token
   const token = request.cookies.get(AUTH_COOKIE);
   if (!token) {
     const url = request.nextUrl.clone();
