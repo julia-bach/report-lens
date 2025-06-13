@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getPassword, getUsername } from "@/utils/get-env-server-side";
 import { AUTH_COOKIE } from "@/utils/constants";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 export const middleware = async (request: NextRequest) => {
   const pathname = request.nextUrl.pathname;
 
-  const username = await getUsername();
-  const password = await getPassword();
-  const loginEnabled = username || password || username !== "none" || password !== "none";
+  const [username, password] = await Promise.all([getUsername(), getPassword()]);
+  const loginEnabled = [username, password].every(value => value && value !== "none");
 
   const publicPaths = ["/login"];
 
@@ -15,15 +15,26 @@ export const middleware = async (request: NextRequest) => {
     return NextResponse.next();
   }
 
-  // TODO: validar expired date do cookie/token
-  const token = request.cookies.get(AUTH_COOKIE);
+  const token = request.cookies.get(AUTH_COOKIE)?.value;
+
   if (!token) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/login";
-    return NextResponse.redirect(url);
+    return redirectToLogin(request);
+  }
+
+  const decodedToken = jwt.decode(token) as JwtPayload | null;
+  const isTokenExpired = decodedToken?.exp ? Math.floor(Date.now() / 1000) > decodedToken.exp : true;
+
+  if (isTokenExpired) {
+    return redirectToLogin(request);
   }
 
   return NextResponse.next();
+};
+
+const redirectToLogin = (request: NextRequest) => {
+  const url = request.nextUrl.clone();
+  url.pathname = "/login";
+  return NextResponse.redirect(url);
 };
 
 export const config = {
