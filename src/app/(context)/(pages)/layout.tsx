@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/utils/utils";
 import { Routes } from "@/utils/constants";
 import SuspenseWithErrorBoundary from "@/components/error/suspense-with-error-boundary";
+import { getOptionalLogo } from "@/utils/get-env";
 
 export default function RootLayout({
   children
@@ -16,6 +17,8 @@ export default function RootLayout({
 }>) {
   const t = useTranslations();
   const pathname = usePathname();
+
+  const optionalLogo = getOptionalLogo();
 
   return (
     <SuspenseWithErrorBoundary fallback={<div>ta carregando...</div>}>
@@ -50,7 +53,10 @@ export default function RootLayout({
 
           <NavbarContent justify="end">
             <NavbarItem>
-              {/*TODO: logo opcional*/}
+              { optionalLogo && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={optionalLogo} alt={""} width={35} height={35} />
+              )}
             </NavbarItem>
           </NavbarContent>
         </Navbar>
