@@ -10,7 +10,7 @@ interface CredentialsStore {
 const initialState = {
   username: "",
   password: ""
-}
+};
 
 export const useCredentialsStore = create<CredentialsStore>()(
   (set) => ({
@@ -18,4 +18,4 @@ export const useCredentialsStore = create<CredentialsStore>()(
     setUsername: (username: string) => set({ username }),
     setPassword: (password: string) => set({ password })
   })
-)
+);
