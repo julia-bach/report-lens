@@ -6,7 +6,7 @@ import {
   NestedValueOf,
   RichTranslationValues,
   TranslationValues
-} from "use-intl"
+} from "use-intl";
 import React from "react";
 
 export type Translations = {
@@ -25,6 +25,7 @@ export type ReportStatsDTO = {
   skipped: number;
   startTime: string;
   unexpected: number;
+  total?: number;
 }
 
 export type ReportDTO = {

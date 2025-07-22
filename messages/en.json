@@ -17,5 +17,8 @@
     "home": "Home",
     "timeline": "Timeline",
     "dashboards": "Dashboards"
+  },
+  "form": {
+    "search": "Search"
   }
 }

@@ -6,16 +6,15 @@ export const agTheme = themeQuartz.withParams({
   rowHeight: 30,
   borderColor: "none",
   headerTextColor: themeColors.primary[50],
-  textColor: themeColors.primary[600],
+  textColor: themeColors.gray[600],
   // panelTitleBarTextColor: themeColors.neutral[50],
   // iconButtonHoverColor: themeColors.neutral[50],
   // iconButtonHoverBackgroundColor: "rgba(255, 255, 255, 0.1)",
   // iconButtonActiveColor: themeColors.neutral[50],
-  // findActiveMatchColor: themeColors.neutral[50],
-  // headerCellHoverBackgroundColor: "rgba(0, 0, 0, 0.2)",
-  // oddRowBackgroundColor: themeColors.slate["200"],
-  // menuBackgroundColor: themeColors.slate[200],
-  // menuBorder: { style: "solid", width: 1, color: themeColors.secondary[300] },
-  backgroundColor: themeColors.primary[100],
-  headerBackgroundColor: themeColors.primary[600]
+  headerCellHoverBackgroundColor: themeColors.primary[600],
+  rowHoverColor: themeColors.gray[200],
+  oddRowBackgroundColor: themeColors.gray[100],
+  menuBorder: { style: "solid", width: 1, color: themeColors.primary[100] },
+  backgroundColor: themeColors.white,
+  headerBackgroundColor: themeColors.primary[500]
 });

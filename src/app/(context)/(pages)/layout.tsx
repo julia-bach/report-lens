@@ -26,26 +26,26 @@ export default function RootLayout({
         <Navbar maxWidth="xl" className="shadow-sm">
           <NavbarBrand>
             <div className="flex items-center gap-3">
-              <Cat width={28} height={28} className="text-defaultAppColors-primary-300" />
-              <p className="font-semibold text-lg text-inherit hidden sm:block text-defaultAppColors-secondary-500">{t("reportLens")}</p>
+              <Cat width={28} height={28} className="text-primary-300" />
+              <p className="font-semibold text-lg text-inherit hidden sm:block text-black">{t("reportLens")}</p>
             </div>
           </NavbarBrand>
 
           <NavbarContent className="hidden sm:flex gap-5" justify="center">
             <NavbarItem>
               <Link href={Routes.HOME} className={cn("font-medium", pathname === Routes.HOME ?
-                "text-defaultAppColors-primary-500" : "text-black")}>
+                "text-primary-500" : "text-gray-500")}>
                 {t("navbar.home")}
               </Link>
             </NavbarItem>
             <NavbarItem>
               <Link href={Routes.TIMELINE} className={cn("font-medium", pathname.includes(Routes.TIMELINE) ?
-                "text-defaultAppColors-primary-500" : "text-black")}>
+                "text-primary-500" : "text-gray-500")}>
                 {t("navbar.timeline")}
               </Link>
             </NavbarItem>
             <NavbarItem>
-              <Link href="#" className="font-medium">
+              <Link href="#" className="font-medium text-gray-500">
                 {t("navbar.dashboards")}
               </Link>
             </NavbarItem>
@@ -61,7 +61,7 @@ export default function RootLayout({
           </NavbarContent>
         </Navbar>
 
-        <div className="container">
+        <div>
           {children}
         </div>
       </div>

@@ -2,18 +2,18 @@
 
 import { apiClient } from "@/services/axios-instance";
 import AgGrid from "@/components/wrappers/ag-grid/ag-grid";
-import { testReportStore } from "@/store/test";
 import { useShallow } from "zustand/react/shallow";
 import useSWRImmutable from "swr/immutable";
 import { ReportDTO, ReportStatsDTO } from "@/types/generic-types";
 import { formatDuration, getDateTimeFormatted } from "@/utils/utils";
+import { testReportStore } from "@/store/test-report";
 
 export default function Test({ hasError }: {hasError?: boolean}) {
   const { reportStats, setReportStats } = testReportStore(useShallow((state) => state));
 
   const fetchData = async () => {
     const res = await apiClient.get("/api/reports");
-    return res?.data
+    return res?.data;
   };
 
   useSWRImmutable(hasError ? null : "/api/reports", fetchData, {
@@ -27,14 +27,14 @@ export default function Test({ hasError }: {hasError?: boolean}) {
           ...item.stats,
           startTime,
           duration
-        }
-      })
+        };
+      });
       setReportStats(body);
     }
-  })
+  });
 
   if (hasError) {
-    return <div>ERROR</div>
+    return <div>ERROR</div>;
   }
 
   const columnDefs = [
@@ -44,7 +44,7 @@ export default function Test({ hasError }: {hasError?: boolean}) {
     { headerName: "Skipped", field: "skipped" },
     { headerName: "Start", field: "startTime" },
     { headerName: "Failed", field: "unexpected" }
-  ]
+  ];
 
   return (
     <div className="w-[1000px]">
