@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Translations } from "@/types/generic-types";
 import { getNextPublicApiUrl } from "@/utils/get-env";
 
 export const apiClient = axios.create({
@@ -7,7 +6,7 @@ export const apiClient = axios.create({
   timeout: 10000
 });
 
-export const axiosInterceptorsRequest = (t: Translations) => {
+export const axiosInterceptorsRequest = () => {
   return apiClient?.interceptors?.request.use(
     (config) => {
       return config;
@@ -18,7 +17,7 @@ export const axiosInterceptorsRequest = (t: Translations) => {
   );
 };
 
-export const axiosInterceptorsResponse = ((t: Translations) => {
+export const axiosInterceptorsResponse = (() => {
   return apiClient?.interceptors?.response.use(
     (res) => {
       return res;
