@@ -17,3 +17,8 @@ export const getNodeEnv = (): string => {
 export const getOptionalLogo = (): string | null => {
   return process.env.NEXT_PUBLIC_LOGO_URL ?? null;
 };
+
+export const getProjectName = (): string | undefined => {
+  const project = process.env.NEXT_PUBLIC_PROJECT ?? undefined;
+  return project?.toLowerCase();
+};
