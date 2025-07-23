@@ -11,3 +11,4 @@ export const Routes = {
   TIMELINE: "/timeline"
 };
 
+export const dbCollectionPrefix = "report-lens__";
