@@ -46,6 +46,7 @@ export const useColumnDefTimelinePage = (): ColDef[] => {
         filter: false,
         sortable: false,
         cellClass: "text-center",
+        maxWidth: 50,
         cellRenderer: () => (
           <AccessReportButton/>
         )

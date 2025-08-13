@@ -1,20 +1,33 @@
 "use client";
 
 import React from "react";
-import { Link, Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@heroui/react";
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  Link,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem
+} from "@heroui/react";
 import { useTranslations } from "next-intl";
-import { Cat } from "lucide-react";
+import { Cat, ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/utils/utils";
 import { Routes } from "@/utils/constants";
-import SuspenseWithErrorBoundary from "@/components/error/suspense-with-error-boundary";
 import { getOptionalLogo } from "@/utils/get-env";
+import SuspenseWithErrorBoundary from "@/components/error/suspense-with-error-boundary";
+import { useInitProjectName } from "@/hook/use-project-name";
 
 export default function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { projectName, setProjectName, projects, loading, showDropdown } = useInitProjectName();
   const t = useTranslations();
   const pathname = usePathname();
 
@@ -49,12 +62,48 @@ export default function RootLayout({
                 {t("navbar.dashboards")}
               </Link>
             </NavbarItem>
+
+            {showDropdown && !loading && (
+              <Dropdown>
+                <NavbarItem>
+                  <DropdownTrigger>
+                    <Button
+                      disableRipple
+                      className={cn("p-0 bg-transparent data-[hover=true]:bg-transparent font-medium text-[14px]",
+                        "text-gray-500 gap-1"
+                      )}
+                      radius="sm"
+                      variant="light"
+                      endContent={<ChevronDown size={16}/>}
+                    >
+                      {projectName
+                        ? projectName.replace(/^./, s => s.toUpperCase())
+                        : "Select Project"}
+                    </Button>
+                  </DropdownTrigger>
+                </NavbarItem>
+                <DropdownMenu>
+                  {projects.map(project => {
+                    const label = project.replace(/^./, s => s.toUpperCase());
+
+                    return (
+                      <DropdownItem
+                        key={project}
+                        onClick={() => setProjectName(project)}
+                        className="font-medium text-gray-500"
+                      >
+                        {label}
+                      </DropdownItem>
+                    );
+                  })}
+                </DropdownMenu>
+              </Dropdown>
+            )}
           </NavbarContent>
 
           <NavbarContent justify="end">
             <NavbarItem>
               { optionalLogo && (
-                // eslint-disable-next-line @next/next/no-img-element
                 <img src={optionalLogo} alt={""} width={35} height={35} />
               )}
             </NavbarItem>

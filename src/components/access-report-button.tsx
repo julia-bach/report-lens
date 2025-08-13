@@ -1,12 +1,11 @@
-import { Button } from "@heroui/react";
+import { SquareArrowOutUpRight } from "lucide-react";
 
 export default function AccessReportButton() {
   return (
-    <Button
-      variant="ghost"
-      size="sm"
-    >
-      Access Report
-    </Button>
+    <div className="flex items-center h-full justify-end">
+      <button title="Access Report">
+        <SquareArrowOutUpRight height="19" width="19" className="text-primary-300"/>
+      </button>
+    </div>
   );
 }

@@ -25,7 +25,8 @@ export default function AgGrid({ gridHeight = 0, ...props }: AgGridProps) {
         pagination={true}
         defaultColDef={defaultColDef}
         theme={agTheme}
-        paginationPageSize={20}
+        paginationPageSize={10}
+        paginationPageSizeSelector={[10, 20, 50]}
         domLayout="normal"
       />
     </div>

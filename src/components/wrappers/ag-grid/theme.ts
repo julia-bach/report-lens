@@ -2,8 +2,8 @@ import { themeQuartz } from "ag-grid-community";
 import { themeColors } from "../../../../tailwind.config";
 
 export const agTheme = themeQuartz.withParams({
-  spacing: 6,
-  rowHeight: 30,
+  spacing: 7,
+  rowHeight: 45,
   borderColor: "none",
   headerTextColor: themeColors.primary[50],
   textColor: themeColors.gray[600],
