@@ -24,6 +24,7 @@ export type ReportStatsDTO = {
   flaky: number;
   skipped: number;
   startTime: string;
+  startTimeMs: number;
   unexpected: number;
   total?: number;
 }

@@ -1,4 +1,4 @@
-import { Timeline } from "@/components/pages/timeline.page";
+import { Timeline } from "@/components/pages/timeline/timeline.page";
 
 export default function TimelinePage() {
   return (

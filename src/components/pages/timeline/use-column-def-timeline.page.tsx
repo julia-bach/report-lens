@@ -15,7 +15,8 @@ export const useColumnDefTimelinePage = (): ColDef[] => {
       },
       {
         headerName: "Duration",
-        field: "duration"
+        field: "duration",
+        filter: false
       },
       {
         headerName: "Passed",
