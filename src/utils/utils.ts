@@ -65,3 +65,22 @@ export const formatTestStatsText = (numberOfTests: number) => {
   }
   return numberOfTests.toString();
 };
+
+export function getCutoff(timeRange: string): number | null {
+  const now = Date.now();
+  const day = 24 * 60 * 60 * 1000;
+
+  if (timeRange === "1d") {
+    return now - day;
+  }
+
+  if (timeRange === "7d") {
+    return now - 7 * day;
+  }
+
+  if (timeRange === "30d") {
+    return now - 30 * day;
+  }
+
+  return null;
+}

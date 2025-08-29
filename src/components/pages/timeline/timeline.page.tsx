@@ -4,7 +4,7 @@ import { useColumnDefTimelinePage } from "@/components/pages/timeline/use-column
 import { apiClient } from "@/services/axios-instance";
 import { useShallow } from "zustand/react/shallow";
 import { ReportDTO, ReportStatsDTO } from "@/types/generic-types";
-import { formatDurationText, getDateTimeFormatted } from "@/utils/utils";
+import { formatDurationText, getCutoff, getDateTimeFormatted } from "@/utils/utils";
 import AgGrid from "@/components/wrappers/ag-grid/ag-grid";
 import { useMemo, useRef, useState } from "react";
 import Search from "@/components/search";
@@ -33,15 +33,6 @@ export const Timeline = () => {
     return res?.data;
   };
 
-  function getCutoff(timeRange: string): number | null {
-    const now = Date.now();
-    const day = 24 * 60 * 60 * 1000;
-    if (timeRange === "1d")  {return now - day;}
-    if (timeRange === "7d")  {return now - 7 * day;}
-    if (timeRange === "30d") {return now - 30 * day;}
-    return null;
-  }
-
   useSWR(`/api/reports/${projectName}`, fetchData, {
     suspense: true,
     onSuccess: (res) => {
@@ -69,7 +60,6 @@ export const Timeline = () => {
     if (!cutoff) {return reportStats;} 
     return (reportStats ?? []).filter(r => r.startTimeMs >= cutoff);
   }, [reportStats, timeRange]);
-
 
   return (
     <div className="w-full items-center justify-center px-16 pt-16">
