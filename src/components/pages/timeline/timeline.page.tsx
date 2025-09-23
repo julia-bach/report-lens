@@ -63,7 +63,7 @@ export const Timeline = () => {
 
   return (
     <div className="w-full items-center justify-center px-16 pt-16">
-      <div className="flex flex-row w-full justify-between items-center">
+      <div className="flex flex-row w-full gap-3 items-center">
         <Search
           className="w-[max(20rem,20vw)]"
           onClear={() => setQuickFilterText("")}
