@@ -38,7 +38,6 @@ export default function Search({
     onChange?.(fakeEvent);
   };
 
-  // todo: ajustar pesquisa da coluna test run para aceitar pesquisa por string
   return (
     <div className={cn("items-center pb-5", className)}>
       <Input

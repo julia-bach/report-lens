@@ -2,6 +2,7 @@ import { ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
+import { SpecState } from "@/types/generic-types";
 
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
@@ -84,3 +85,24 @@ export function getCutoff(timeRange: string): number | null {
 
   return null;
 }
+
+export const deriveSpecState = (spec: any): SpecState => {
+  const hasFailed  = spec.tests?.some((t: any) => t.status === "unexpected");
+  const hasFlaky   = spec.tests?.some((t: any) => t.status === "flaky");
+  const allSkipped = spec.tests?.length > 0 && spec.tests.every((t: any) => t.status === "skipped");
+  const allPassed  = spec.ok && !hasFailed && !hasFlaky && !allSkipped;
+
+  if (hasFailed) {
+    return "failed";
+  }
+  if (hasFlaky)  {
+    return "flaky";
+  }
+  if (allSkipped) {
+    return "skipped";
+  }
+  if (allPassed) {
+    return "passed";
+  }
+  return "failed";
+};

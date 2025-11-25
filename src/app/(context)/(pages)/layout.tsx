@@ -21,6 +21,7 @@ import { Routes } from "@/utils/constants";
 import { getOptionalLogo } from "@/utils/get-env";
 import SuspenseWithErrorBoundary from "@/components/error/suspense-with-error-boundary";
 import { useInitProjectName } from "@/hook/use-project-name";
+import Loading from "@/components/loading";
 
 export default function RootLayout({
   children
@@ -34,7 +35,7 @@ export default function RootLayout({
   const optionalLogo = getOptionalLogo();
 
   return (
-    <SuspenseWithErrorBoundary fallback={<div>ta carregando...</div>}>
+    <SuspenseWithErrorBoundary fallback={<Loading/>}>
       <div className="min-h-screen bg-background">
         <Navbar maxWidth="xl" className="shadow-sm">
           <NavbarBrand>
@@ -45,12 +46,12 @@ export default function RootLayout({
           </NavbarBrand>
 
           <NavbarContent className="hidden sm:flex gap-5" justify="center">
-            <NavbarItem>
-              <Link href={Routes.HOME} className={cn("font-medium", pathname === Routes.HOME ?
-                "text-primary-500" : "text-gray-500")}>
-                {t("navbar.home")}
-              </Link>
-            </NavbarItem>
+            {/*<NavbarItem>*/}
+            {/*  <Link href={Routes.HOME} className={cn("font-medium", pathname === Routes.HOME ?*/}
+            {/*    "text-primary-500" : "text-gray-500")}>*/}
+            {/*    {t("navbar.home")}*/}
+            {/*  </Link>*/}
+            {/*</NavbarItem>*/}
             <NavbarItem>
               <Link href={Routes.TIMELINE} className={cn("font-medium", pathname.includes(Routes.TIMELINE) ?
                 "text-primary-500" : "text-gray-500")}>

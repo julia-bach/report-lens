@@ -4,7 +4,7 @@ import { useColumnDefTimelinePage } from "@/components/pages/timeline/use-column
 import { apiClient } from "@/services/axios-instance";
 import { useShallow } from "zustand/react/shallow";
 import { ReportDTO, ReportStatsDTO } from "@/types/generic-types";
-import { formatDurationText, getCutoff, getDateTimeFormatted } from "@/utils/utils";
+import { formatDurationText, formatStartTime, getCutoff, getDateTimeFormatted } from "@/utils/utils";
 import AgGrid from "@/components/wrappers/ag-grid/ag-grid";
 import { useMemo, useRef, useState } from "react";
 import Search from "@/components/search";
@@ -15,6 +15,7 @@ import useSWR from "swr";
 import { useProjectNameStore } from "@/store/project-name-store";
 import TimeRangeSelect from "@/components/time-range-select";
 import { timeRangeStore } from "@/store/time-range-store";
+import { useRouter } from "next/navigation";
 
 export const Timeline = () => {
   const { reportStats, setReportStats } = testReportStore(useShallow((state) => state));
@@ -22,8 +23,9 @@ export const Timeline = () => {
   const { height } = useWindowHeightStore(useShallow((state) => state));
   const { timeRange } = timeRangeStore(useShallow((state) => state));
 
+  const router = useRouter();
   const divRef = useRef<HTMLDivElement>(null);
-  const columnDef = useColumnDefTimelinePage();
+  const columnDef = useColumnDefTimelinePage(router, projectName);
   const { height: alertHeight } = useComponentSize(divRef);
 
   const [quickFilterText, setQuickFilterText] = useState<string>();
@@ -44,7 +46,7 @@ export const Timeline = () => {
         return {
           id: item._id,
           ...item.stats,
-          startTime,
+          startTime: formatStartTime(startTime),
           startTimeMs,
           duration,
           total
@@ -61,6 +63,9 @@ export const Timeline = () => {
     return (reportStats ?? []).filter(r => r.startTimeMs >= cutoff);
   }, [reportStats, timeRange]);
 
+  console.log("filter", quickFilterText);
+  console.log("data", filteredData);
+
   return (
     <div className="w-full items-center justify-center px-16 pt-16">
       <div className="flex flex-row w-full gap-3 items-center">
@@ -76,7 +81,7 @@ export const Timeline = () => {
         rowData={filteredData}
         getRowId={(params) => params.data.id.toString()}
         quickFilterText={quickFilterText}
-        gridHeight={height - 200 - alertHeight}
+        gridHeight={height - 170 - alertHeight}
       />
     </div>
   );

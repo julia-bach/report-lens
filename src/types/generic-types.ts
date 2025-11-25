@@ -33,3 +33,9 @@ export type ReportDTO = {
   _id: number;
   stats: ReportStatsDTO;
 }
+
+export interface GenericObject {
+  [key: string]: any;
+}
+
+export type SpecState = "failed" | "flaky" | "skipped" | "passed";

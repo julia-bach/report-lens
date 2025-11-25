@@ -10,7 +10,7 @@ const db = client.db(getMongoDbName());
 export async function GET(_: Request, { params }: any) {
   const project = (await params).project.toLowerCase();
 
-  const result = await db.collection(`${dbCollectionPrefix}${project}`).find({}).toArray();
+  const result = await db.collection(`${dbCollectionPrefix}${project}`).find({}, { projection: { stats: 1 } }).toArray();
   const data = result.sort((a, b) => {
     return new Date(b.stats.startTime).getTime() - new Date(a.stats.startTime).getTime();
   });
