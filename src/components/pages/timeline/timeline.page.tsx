@@ -67,7 +67,7 @@ export const Timeline = () => {
   console.log("data", filteredData);
 
   return (
-    <div className="w-full items-center justify-center px-16 pt-16">
+    <div className="w-full items-center justify-center px-48 pt-16">
       <div className="flex flex-row w-full gap-3 items-center">
         <Search
           className="w-[max(20rem,20vw)]"
@@ -81,7 +81,7 @@ export const Timeline = () => {
         rowData={filteredData}
         getRowId={(params) => params.data.id.toString()}
         quickFilterText={quickFilterText}
-        gridHeight={height - 170 - alertHeight}
+        gridHeight={height - 190 - alertHeight}
       />
     </div>
   );

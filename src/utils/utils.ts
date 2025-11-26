@@ -2,7 +2,7 @@ import { ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
-import { SpecState } from "@/types/generic-types";
+import { AggregatedRow, ReportStatsDTO, SpecState } from "@/types/generic-types";
 
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
@@ -106,3 +106,48 @@ export const deriveSpecState = (spec: any): SpecState => {
   }
   return "failed";
 };
+
+export function toDate(run: ReportStatsDTO): Date {
+  return new Date(run.startTimeMs);
+}
+
+export function monthKey(date: Date): string {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  return `${y}-${m}`;
+}
+
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
+export function weekKey(date: Date): string {
+  const yearStart = new Date(date.getFullYear(), 0, 1);
+  const diffDays = Math.floor((date.getTime() - yearStart.getTime()) / MS_PER_DAY);
+  const week = Math.ceil((diffDays + yearStart.getDay() + 1) / 7);
+  return `${date.getFullYear()}-W${String(week).padStart(2, "0")}`;
+}
+
+export function aggregateBy<T extends string>(runs: ReportStatsDTO[], keyFn: (d: Date) => T): AggregatedRow[] {
+  const map = new Map<T, AggregatedRow>();
+  for (const run of runs) {
+    const d = toDate(run);
+    const key = keyFn(d);
+
+    const row =
+      map.get(key) ??
+      {
+        period: key,
+        passed: 0,
+        failed: 0,
+        flaky: 0,
+        skipped: 0
+      };
+
+    row.passed += run.expected;
+    row.failed += run.unexpected;
+    row.flaky += run.flaky;
+    row.skipped += run.skipped;
+
+    map.set(key, row);
+  }
+
+  return Array.from(map.values()).sort((a, b) => a.period.localeCompare(b.period));
+}

@@ -8,7 +8,8 @@ export const TOKEN_DURATION = {
 export const Routes = {
   LOGIN: "/login",
   HOME: "/",
-  TIMELINE: "/timeline"
+  TIMELINE: "/timeline",
+  DASHBOARDS: "/dashboards"
 };
 
 export const dbCollectionPrefix = "report-lens__";

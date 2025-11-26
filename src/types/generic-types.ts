@@ -39,3 +39,14 @@ export interface GenericObject {
 }
 
 export type SpecState = "failed" | "flaky" | "skipped" | "passed";
+
+export type AggregatedRow = {
+  period: string;
+  passed: number;
+  failed: number;
+  flaky: number;
+  skipped: number;
+};
+export type FailureSeriesMode = "monthly" | "all";
+
+export type PassFailMode = "monthly" | "weekly";

@@ -59,7 +59,8 @@ export default function RootLayout({
               </Link>
             </NavbarItem>
             <NavbarItem>
-              <Link href="#" className="font-medium text-gray-500">
+              <Link href={Routes.DASHBOARDS} className={cn("font-medium", pathname.includes(Routes.DASHBOARDS) ?
+                "text-primary-500" : "text-gray-500")}>
                 {t("navbar.dashboards")}
               </Link>
             </NavbarItem>
