@@ -9,15 +9,12 @@ O objetivo é transformar arquivos JSON brutos em histórico, métricas e dashbo
 
 - [Visão Geral](#visão-geral)
 - [Funcionalidades](#funcionalidades)
-- [Arquitetura](#arquitetura)
-- [Tecnologias](#tecnologias)
+- [Arquitetura e Tecnologias](#arquitetura-e-tecnologias)
 - [Requisitos](#requisitos)
 - [Configuração](#configuração)
 - [Como rodar localmente](#como-rodar-localmente)
 - [Estrutura de pastas](#estrutura-de-pastas)
 - [Fluxo de uso](#fluxo-de-uso)
-- [Roadmap](#roadmap)
-- [Contribuição](#contribuição)
 - [Licença](#licença)
 
 ---
