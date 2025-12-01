@@ -106,7 +106,7 @@ export default function RootLayout({
           <NavbarContent justify="end">
             <NavbarItem>
               { optionalLogo && (
-                <img src={optionalLogo} alt={""} width={35} height={35} />
+                <img src={optionalLogo} alt={""} width={40} height={40} />
               )}
             </NavbarItem>
           </NavbarContent>
