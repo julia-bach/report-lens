@@ -178,7 +178,7 @@ Estrutura geral (resumida):
 
 ---
 
-## Licença
+## Licença / Aviso de Uso
 
-Este projeto é open source.  
-A licença específica ainda está em definição – antes de usar em produção, verifique este README novamente ou consulte a autora do projeto.
+Este código-fonte foi desenvolvido originalmente para uso interno da empresa WEG, como parte de um projeto corporativo.  
+Com a autorização, a autora disponibiliza este repositório publicamente **apenas para fins educacionais e de demonstração**.
