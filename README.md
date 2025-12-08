@@ -15,6 +15,7 @@ O objetivo é transformar arquivos JSON brutos em histórico, métricas e dashbo
 - [Como rodar localmente](#como-rodar-localmente)
 - [Estrutura de pastas](#estrutura-de-pastas)
 - [Fluxo de uso](#fluxo-de-uso)
+- [Testes](#testes)
 - [Licença](#licença)
 
 ---
@@ -176,6 +177,22 @@ Estrutura geral (resumida):
     - Métricas agregadas.
     - Detalhes dos testes e falhas.
 
+---
+
+## Testes
+
+Este projeto inclui uma suíte de testes automatizados escrita em TypeScript, usando Jest como test-runner. Os testes cobrem:
+
+- Funções utilitárias (formatação de duração e datas, agregação de estatísticas, parsing de relatórios)
+- Validação de helpers de ambiente (leitura de variáveis de ambiente)
+- Conversão e normalização de dados, por exemplo: `monthKey`, `weekKey`, `aggregateBy`, `formatDuration`, `formatDurationText`, etc.
+
+### Como rodar os testes
+   ```bash
+   npm test
+   # ou
+   pnpm test
+   ```
 ---
 
 ## Licença / Aviso de Uso
